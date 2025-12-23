@@ -1,18 +1,17 @@
 # FastAPI
 
-## Virtual Environment Setup
+ ## Run the Application
 
-### Create Virtual Environment (Windows - Git Bash) 
 ```bash
-python -m venv venv
-```
+uvicorn main:app --reload
 
-### Activate Virtual Environment (Windows – Git Bash)
-```bash
-source venv/Scripts/activate
-```
+🌐 API Access
 
-### Deactivate Virtual Environment
-```bash
-deactivate
-```
+API Base URL:
+http://localhost:8000
+
+Interactive Docs (Swagger UI):
+http://localhost:8000/docs
+
+ReDoc Documentation:
+http://localhost:8000/redoc
