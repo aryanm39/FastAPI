@@ -1,17 +1,15 @@
 # FastAPI
 
- ## Run the Application
+## Documentation
 
-```bash
-uvicorn main:app --reload
+- **FastAPI**  
+  https://fastapi.tiangolo.com/
 
-🌐 API Access
+- **Pydantic**  
+  https://docs.pydantic.dev/latest/
 
-API Base URL:
-http://localhost:8000
+- **Uvicorn**  
+  https://uvicorn.dev/
 
-Interactive Docs (Swagger UI):
-http://localhost:8000/docs
-
-ReDoc Documentation:
-http://localhost:8000/redoc
+- **HTTP Status Codes (MDN)**  
+  https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
