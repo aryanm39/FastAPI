@@ -1,52 +1,35 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel,EmailStr
-from datetime import date
+from fastapi import FastAPI, Depends, HTTPException
+from sqlalchemy.orm import Session
+import services, models, schemas
+from db import get_db, create_table,engine, Base
 app = FastAPI()
+create_table()
 
-class StudentCreate(BaseModel):
-    name: str
-    email:EmailStr
-    dob:date    #YYYY-MM-DD
-    gender:str
-    degree:str
-    college:str
+@app.get("/students", response_model=list[schemas.Student])
+def get_all_students(db: Session = Depends(get_db)):
+    return services.get_students(db)
 
-class Student(StudentCreate):
-    id: int
+@app.post("/students", response_model=schemas.Student)
+def create_new_student(student: schemas.StudentCreate, db: Session = Depends(get_db)):
+    return services.create_student(db, student)
 
-# students = {}
-students: dict[int, Student] = {}
-student_id = 1
+@app.get("/students/{id}", response_model=schemas.Student)
+def get_student_by_id(id: int, db: Session = Depends(get_db)):
+    student = services.get_student(db, id)
+    if student:
+        return student
+    raise HTTPException(status_code=404, detail="Invalid student ID provided")
 
-@app.get("/students",response_model=list[Student])
-def get_all_students():
-    return list(students.values())
-
-@app.post("/students",response_model=Student)
-def create_student(student: StudentCreate): 
-    global student_id
-    new_student = Student(id=student_id,**student.model_dump())
-    students[student_id] = new_student
-    student_id += 1
-    return new_student
-
-@app.get("/students/{id}",response_model=Student) 
-def get_student(id: int):
-    if id not in students:
+@app.put("/students/{id}", response_model=schemas.Student)
+def update_student(id: int, student: schemas.StudentCreate, db: Session = Depends(get_db)):
+    updated_student = services.update_student(db, id,student)
+    if not updated_student:
         raise HTTPException(status_code=404, detail="Student not found")
-    return students[id]
-
-@app.put("/students/{id}",response_model=Student) 
-def update_student(id: int,student: StudentCreate): 
-    if id not in students:
-        raise HTTPException(status_code=404, detail="Student not found")
-    updated_student = Student(id=id,**student.model_dump())
-    students[id] = updated_student
     return updated_student
 
-@app.delete("/students/{id}",response_model=Student) 
-def delete_student(id: int):
-    if id not in students:
-        raise HTTPException(status_code=404, detail="Student not found")
-
-    return students.pop(id)
+@app.delete("/students/{id}", response_model=schemas.Student)
+def delete_student(id: int, db: Session = Depends(get_db)):
+    deleted_student = services.delete_student(db, id)
+    if deleted_student:
+        return deleted_student
+    raise HTTPException(status_code=404, detail="Student not found")
