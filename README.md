@@ -1,44 +1,13 @@
 # FastAPI
 
-## Connecting FastAPI to PostgreSQL 
-1. Create db.py: This file handles the database connection.
-2. Import Dependencies:
-3. Define Database URL:
-4. Create Engine:
-5. Create Local Session:
-6. Define Base:
-7. get_db Function:
-8. create_table Function
+## Addressing "Failed to Fetch" Errors and CORS Issues
 
-## Defining Database Models
-1. Create models.py: This file defines the database tables.
-2. Import Dependencies:
-3. Define the Book Class:
+### CORS (Cross-Origin Resource Sharing)
 
-## Defining Schemas with Pydantic
-1. Create schemas.py: This file defines the data structures for request and response bodies.
-2. Import Dependencies:
-3. Define BookBase:
-4. Define BookCreate:
-5. Define Book:
+**Error:**  
+This error occurs when the front end (running on `localhost:3000`) tries to access the 
+back end (running on `localhost:8000`).  
+Browsers block cross-origin requests by default for security reasons.
 
-## Defining Services
-1. Create services.py: This file contains functions for database interactions.
-2. Import Dependencies:
-3. create_book Function:
-4. get_books Function:
-5. get_book Function:
-6. update_book Function:
-7. delete_book Function:
-
-## Creating the FastAPI Application
-1. Create main.py: This file defines the API endpoints.
-2. Import Dependencies:
-3. Create FastAPI Instance:
-4. Define Endpoints:
-
-GET /books (Retrieve all books):
-POST /books (Create a new book):
-GET /books/{id} (Retrieve a specific book):
-PUT /books/{id} (Update a specific book):
-DELETE /books/{id} (Delete a specific book):
+- **allow_origins**: A list of origins that are allowed to make requests.  
+  Set it to `["http://localhost:3000"]` to allow requests from your React development server.
