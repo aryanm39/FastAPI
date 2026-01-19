@@ -1,13 +1,24 @@
 # FastAPI
 
-## Addressing "Failed to Fetch" Errors and CORS Issues
+**source venv/Scripts/activate**
 
-### CORS (Cross-Origin Resource Sharing)
+**uvicorn main:app --reload**
 
-**Error:**  
-This error occurs when the front end (running on `localhost:3000`) tries to access the 
-back end (running on `localhost:8000`).  
-Browsers block cross-origin requests by default for security reasons.
+**anyone view blogs**
 
-- **allow_origins**: A list of origins that are allowed to make requests.  
-  Set it to `["http://localhost:3000"]` to allow requests from your React development server.
+**authenticated users can create & delete their own blogs**
+
+**admin can delete anyone's blogs**
+
+## frontend 
+https://github.com/aryanm39/react 
+##
+test@example.com(admin)  test1234
+first 3 blogs
+
+aryan@gmail.com(user)  testaryan
+create sample blogs 
+
+UPDATE users SET role = 'admin' WHERE id = 1;
+
+DELETE FROM users WHERE id = 2;
