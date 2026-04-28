@@ -1,7 +1,13 @@
-## 🌐 API Access
+## Documentation 
 
-**Interactive Docs (Swagger UI):** \
-http://localhost:8000/docs
+**FastAPI**  \
+https://fastapi.tiangolo.com/
 
-**ReDoc Documentation:** \
-http://localhost:8000/redoc
+**Pydantic**  \
+https://docs.pydantic.dev/latest/
+
+**Uvicorn**  \
+https://uvicorn.dev/
+
+**HTTP Status Codes (MDN)**  \
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
